@@ -14,7 +14,7 @@ export type UpdateInfoResponse = {
 
 export type UpdateInfo = {
   updating: boolean
-  status?: UpdateInfoStatus
+  status: UpdateInfoStatus
   critical?: UpdateInfoResponse
   suggested?: UpdateInfoResponse
 }
@@ -79,7 +79,7 @@ export type State = {
   startupWasFromPush: boolean
   systemDarkMode: boolean
   uid: string
-  updateInfo?: UpdateInfo
+  updateInfo: UpdateInfo
   useNativeFrame: boolean
   userActive: boolean
   userSwitching: boolean
