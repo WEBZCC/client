@@ -73,7 +73,7 @@ const mapDispatchToProps = (dispatch: Container.TypedDispatch) => ({
     hideWindow()
   },
   showInFinder: () => dispatch(FsGen.createOpenPathInSystemFileManager({path: FsConstants.defaultPath})),
-  updateNow: isWindows || isDarwin ? () => dispatch(ConfigGen.createUpdateStart()) : undefined,
+  updateStart: isWindows || isDarwin ? () => dispatch(ConfigGen.createUpdateStart()) : undefined,
   waitForKbfsDaemon: throttle(() => dispatch(FsGen.createWaitForKbfsDaemon()), 1000 * 5),
 })
 

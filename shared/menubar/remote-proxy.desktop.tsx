@@ -141,12 +141,12 @@ const mapStateToProps = (state: Container.TypedState) => ({
   kbfsDaemonStatus: state.fs.kbfsDaemonStatus,
   kbfsEnabled: state.fs.sfmi.driverStatus.type === 'enabled',
   loggedIn: state.config.loggedIn,
-  updateInfo: state.config.updateInfo,
   remoteWindowNeedsProps: Constants.getRemoteWindowPropsCount(state.config, 'menubar', ''),
   showingDiskSpaceBanner: state.fs.overallSyncStatus.showingBanner,
   userInfo: state.users.infoMap,
   username: state.config.username,
   widgetBadge: state.notifications.widgetBadge,
+  updateInfo: state.config.updateInfo,
 })
 
 let _lastUsername: string | undefined

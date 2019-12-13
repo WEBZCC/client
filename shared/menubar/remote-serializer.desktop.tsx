@@ -72,9 +72,9 @@ export const serialize: any = {
   kbfsDaemonStatus: (v: FSTypes.KbfsDaemonStatus) => v,
   kbfsEnabled: (v: boolean) => v,
   loggedIn: (v: boolean) => v,
-  outOfDate: (v: boolean) => v,
   showingDiskSpaceBanner: (v: boolean) => v,
   totalSyncingBytes: (v: number) => v,
+  updateInfo: (v: ConfigTypes.UpdateInfo) => v,
   // Just send broken over, if its the same send null
   userInfo: (v: Map<string, UsersTypes.UserInfo>, o: Map<string, UsersTypes.UserInfo>) => {
     const toSend = [...v.entries()].filter(e => e[1].broken)
