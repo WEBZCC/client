@@ -338,7 +338,7 @@ class User extends React.Component<Props, State> {
     },
     headerTransparent: true,
     underNotch: true,
-    whatsNewIconColor: Styles.globalColors.white,
+    whatsNewIsProfileHeader: true,
   })
 
   constructor(props: Props) {
