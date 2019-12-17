@@ -143,10 +143,10 @@ const mapStateToProps = (state: Container.TypedState) => ({
   loggedIn: state.config.loggedIn,
   remoteWindowNeedsProps: Constants.getRemoteWindowPropsCount(state.config, 'menubar', ''),
   showingDiskSpaceBanner: state.fs.overallSyncStatus.showingBanner,
+  updateInfo: state.config.updateInfo,
   userInfo: state.users.infoMap,
   username: state.config.username,
   widgetBadge: state.notifications.widgetBadge,
-  updateInfo: state.config.updateInfo,
 })
 
 let _lastUsername: string | undefined
