@@ -19,8 +19,10 @@ const getCriticallyOutOfDateText = (updateInfo: ConfigTypes.UpdateInfo) =>
 const OutOfDate = ({updateInfo, updateStart}: Props) => {
   if (!flags.outOfDateBanner || !updateInfo) return null
   const isCritical = updateInfo.status === 'critical'
+  const isSuggested = updateInfo.status === 'suggested'
+  const needUpdate = isCritical || isSuggested
   const bannerColor = isCritical ? 'red' : 'yellow'
-  return (
+  return needUpdate ? (
     <Kb.Banner color={bannerColor} style={styles.banner} textContainerStyle={styles.textContainerStyle}>
       <Kb.BannerParagraph bannerColor={bannerColor} content={getCriticallyOutOfDateText(updateInfo)} />
       {updateInfo.updating ? (
@@ -40,7 +42,7 @@ const OutOfDate = ({updateInfo, updateStart}: Props) => {
         </Kb.Text>
       )}
     </Kb.Banner>
-  )
+  ) : null
 }
 
 const styles = Styles.styleSheetCreate(() => ({
