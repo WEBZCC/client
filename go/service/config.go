@@ -375,7 +375,7 @@ func (h ConfigHandler) GetUpdateInfo2(ctx context.Context, arg keybase1.GetUpdat
 
 	var version string
 	var platform string
-	var installId string
+	var installID string
 	var slowReleaseBypass bool
 
 	if arg.Platform != nil {
@@ -389,7 +389,7 @@ func (h ConfigHandler) GetUpdateInfo2(ctx context.Context, arg keybase1.GetUpdat
 		version = libkb.VersionString()
 	}
 	if i := m.G().Env.GetInstallID(); i.Exists() {
-		installId = i.String()
+		installID = i.String()
 	}
 	if arg.TestSlowReleaseBypass != nil {
 		slowReleaseBypass = *arg.TestSlowReleaseBypass
@@ -400,7 +400,7 @@ func (h ConfigHandler) GetUpdateInfo2(ctx context.Context, arg keybase1.GetUpdat
 		Args: libkb.HTTPArgs{
 			"version":    libkb.S{Val: version},
 			"platform":   libkb.S{Val: platform},
-			"install_id": libkb.S{Val: installId},
+			"install_id": libkb.S{Val: installID},
 			"test_bypass_slow_release": libkb.B{Val: slowReleaseBypass},
 		},
 		RetryCount: 3,
