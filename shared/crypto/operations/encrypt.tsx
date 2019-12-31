@@ -25,19 +25,24 @@ const OutputBar = () => (
   </Kb.Box2>
 )
 
+const onAttach = (localPaths: Array<string>) => {
+  console.log('JRY onAttach localPaths', {localPaths})
+}
 const Encrypt = () => {
   return (
     <Kb.Box2 direction="vertical" fullWidth={true} fullHeight={true} style={styles.container}>
-      <Recipients />
-      <Kb.Box2 direction="vertical" fullHeight={true}>
-        <OperationInput placeholder="Write something or drop a file you want to encrypt" />
-        <Kb.Divider />
-        <EncryptOptions />
-        <Kb.Divider />
-        <OperationOutput placeholder="Output" />
-        <Kb.Divider />
-        <OutputBar />
-      </Kb.Box2>
+      <Kb.DragAndDrop allowFolders={true} fullHeight={true} fullWidth={true} onAttach={onAttach}>
+        <Recipients />
+        <Kb.Box2 direction="vertical" fullHeight={true}>
+          <OperationInput placeholder="Write something or drop a file you want to encrypt" />
+          <Kb.Divider />
+          <EncryptOptions />
+          <Kb.Divider />
+          <OperationOutput placeholder="Output" />
+          <Kb.Divider />
+          <OutputBar />
+        </Kb.Box2>
+      </Kb.DragAndDrop>
     </Kb.Box2>
   )
 }
@@ -52,7 +57,6 @@ const styles = Styles.styleSheetCreate(
       container: {},
       optionsContainer: {
         ...Styles.padding(Styles.globalMargins.tiny),
-        // backgroundColor: Styles.globalColors.orange,
         height: Styles.globalMargins.xlarge,
       },
       outputBarContainer: {

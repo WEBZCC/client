@@ -79,13 +79,16 @@ class OperationsList extends React.PureComponent<Props> {
 const styles = Styles.styleSheetCreate(() => ({
   list: {
     ...Styles.globalStyles.fullHeight,
+    borderRightColor: Styles.globalColors.black_10,
+    borderRightStyle: 'solid',
+    borderRightWidth: 1,
   },
   operationsListContainer: {
     backgroundColor: Styles.globalColors.blueGrey,
     borderStyle: 'solid',
     flexGrow: 0,
     flexShrink: 0,
-    width: 240,
+    width: 180,
   },
 }))
 

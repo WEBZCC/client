@@ -1,0 +1,26 @@
+{
+  "prelude": [
+    "import * as Types from '../constants/types/crypto'",
+    "import * as TeamBuildingTypes from '../constants/types/team-bulding'"
+  ],
+  "actions": {
+    "clearInput": {},
+    "setRecipients": {
+      "_description": "List of users for encrypt operation. Result of TeamBuilding",
+      "operation": "Types.Operations",
+      "recipients": "TeamBuildingTypes.User"
+    },
+    "setInputType": {
+      "operation": "Types.Operations",
+      "type": ""
+    },
+    "setInputValue": {
+      "operation": "Types.Operations",
+      "value": ""
+    },
+    "setOptions": {
+      "operation": "Types.Operations",
+      "options": "Types.OperationsOptions"
+    }
+  }
+}
