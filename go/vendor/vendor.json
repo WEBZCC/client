@@ -626,16 +626,16 @@
 			"revisionTime": "2019-08-28T01:53:43Z"
 		},
 		{
-			"checksumSHA1": "9rRK1pLxOcjjNNUP/6H9EthW360=",
+			"checksumSHA1": "7rZ80wqWC43hhF93miWEvw0GtEM=",
 			"path": "github.com/keybase/go-updater/process",
-			"revision": "396e07f04b47f41a5593d5f8e74d32cadbd89d54",
-			"revisionTime": "2019-08-27T21:47:57Z"
+			"revision": "64cde7e54d46cd874e994ede12707f01ab68d031",
+			"revisionTime": "2019-12-31T15:56:55Z"
 		},
 		{
-			"checksumSHA1": "ffC5qvAmfgvFbIYgKbE2E7fwQg8=",
+			"checksumSHA1": "qKcn/uJXImaHJDPuKbxnUZXo3Bc=",
 			"path": "github.com/keybase/go-updater/watchdog",
-			"revision": "396e07f04b47f41a5593d5f8e74d32cadbd89d54",
-			"revisionTime": "2019-08-27T21:47:57Z"
+			"revision": "64cde7e54d46cd874e994ede12707f01ab68d031",
+			"revisionTime": "2019-12-31T15:56:55Z"
 		},
 		{
 			"checksumSHA1": "rRRQUZrxRapCpdmV2BUgmJRE/ww=",

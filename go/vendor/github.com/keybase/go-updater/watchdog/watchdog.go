@@ -6,6 +6,7 @@ package watchdog
 import (
 	"os"
 	"os/exec"
+	"runtime"
 	"time"
 
 	"github.com/keybase/go-updater/process"
@@ -57,7 +58,7 @@ func terminateExisting(programs []Program, log Log) {
 		matcher := process.NewMatcher(program.Path, process.PathEqual, log)
 		matcher.ExceptPID(ospid)
 		log.Infof("Terminating %s", program.Path)
-		process.TerminateAll(matcher, time.Second, log)
+		process.TerminateAll(matcher, 3*time.Second, log)
 	}
 }
 
@@ -77,6 +78,12 @@ func watchProgram(program Program, restartDelay time.Duration, log Log) {
 		err := cmd.Run()
 		if err != nil {
 			log.Errorf("Error running program: %q; %s", program, err)
+			if runtime.GOOS == "windows" {
+				// this will hopefully mitigate some incomplete shutdown issues we've seen
+				log.Debugf("just in case this program is already running, let's try to kill it.")
+				terminateExisting([]Program{program}, log)
+				time.Sleep(restartDelay)
+			}
 		} else {
 			log.Infof("Program finished: %q", program)
 			if program.ExitOn == ExitOnSuccess {
