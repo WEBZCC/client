@@ -13,6 +13,13 @@ export const TabTitles: {[k in Types.CryptoSubTab]: Types.TabTitles} = {
   verifyTab: 'Verify',
 }
 
+export const Operations: {[key: string]: Types.Operations} = {
+  Decrypt: 'decrypt',
+  Encrypt: 'encrypt',
+  Sign: 'sign',
+  Verify: 'verify',
+}
+
 const defaultCommonState = {
   errorMessage: '',
   errorType: '' as Types.ErrorTypes,
@@ -35,7 +42,7 @@ export const makeState = (): Types.State => ({
       sign: true,
       usePGP: false,
     },
-    recipients: new Set(),
+    recipients: [],
   },
   sign: {
     ...defaultCommonState,

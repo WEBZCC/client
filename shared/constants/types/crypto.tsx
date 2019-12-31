@@ -34,7 +34,7 @@ export type EncrypState = CommonState & {
     canUsePGP: boolean
   }
   options: EncryptOptions
-  recipients: Set<TeamBuildingTypes.User> // Only for encrypt operation
+  recipients: Array<TeamBuildingTypes.User> // Only for encrypt operation
 }
 
 export type DecryptState = CommonState & {}

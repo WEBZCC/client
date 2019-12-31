@@ -4,6 +4,7 @@ import * as autoreset from './autoreset-gen'
 import * as bots from './bots-gen'
 import * as chat2 from './chat2-gen'
 import * as config from './config-gen'
+import * as crypto from './crypto-gen'
 import * as deeplinks from './deeplinks-gen'
 import * as dev from './dev-gen'
 import * as devices from './devices-gen'
@@ -35,6 +36,7 @@ export type TypedActions =
   | bots.Actions
   | chat2.Actions
   | config.Actions
+  | crypto.Actions
   | deeplinks.Actions
   | dev.Actions
   | devices.Actions
@@ -291,6 +293,12 @@ export type TypedActionsMap = {
   'config:loadNixOnLoginStartup': config.LoadNixOnLoginStartupPayload
   'config:loadedNixOnLoginStartup': config.LoadedNixOnLoginStartupPayload
   'config:loadOnStart': config.LoadOnStartPayload
+  'crypto:clearRecipients': crypto.ClearRecipientsPayload
+  'crypto:clearInput': crypto.ClearInputPayload
+  'crypto:setRecipients': crypto.SetRecipientsPayload
+  'crypto:setInputType': crypto.SetInputTypePayload
+  'crypto:setInputValue': crypto.SetInputValuePayload
+  'crypto:setOptions': crypto.SetOptionsPayload
   'deeplinks:handleKeybaseLink': deeplinks.HandleKeybaseLinkPayload
   'deeplinks:link': deeplinks.LinkPayload
   'deeplinks:setKeybaseLinkError': deeplinks.SetKeybaseLinkErrorPayload

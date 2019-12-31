@@ -1,22 +1,26 @@
 {
   "prelude": [
     "import * as Types from '../constants/types/crypto'",
-    "import * as TeamBuildingTypes from '../constants/types/team-bulding'"
+    "import * as TeamBuildingTypes from '../constants/types/team-building'"
   ],
   "actions": {
+    "clearRecipients": {
+      "_description": "Remove all recipients from operation",
+      "operation": "Types.Operations"
+    },
     "clearInput": {},
     "setRecipients": {
-      "_description": "List of users for encrypt operation. Result of TeamBuilding",
+      "_description": "Array recipients of operations, provided via TeamBuilding",
       "operation": "Types.Operations",
-      "recipients": "TeamBuildingTypes.User"
+      "recipients": "Array<TeamBuildingTypes.User>"
     },
     "setInputType": {
       "operation": "Types.Operations",
-      "type": ""
+      "type": "Types.InputTypes"
     },
     "setInputValue": {
       "operation": "Types.Operations",
-      "value": ""
+      "value": "string"
     },
     "setOptions": {
       "operation": "Types.Operations",
