@@ -34,4 +34,9 @@ func StopAllButService(mctx libkb.MetaContext, _ keybase1.ExitCode) {
 			mctx.Error("StopAllButService: unable to change mount icon: %s", err)
 		}
 	}
+	mctx.Debug("StopAllButService: Terminating app")
+	err = TerminateApp(mctx.G(), mctx.G().Log)
+	if err != nil {
+		mctx.Error("StopAllButService: unable to TerminateApp: %s", err)
+	}
 }
