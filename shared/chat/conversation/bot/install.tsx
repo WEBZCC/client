@@ -21,6 +21,7 @@ const InstallBotPopup = (props: Props) => {
   const [installScreen, setInstallScreen] = React.useState(false)
   const [installWithCommands, setInstallWithCommands] = React.useState(true)
   const [installWithMentions, setInstallWithMentions] = React.useState(true)
+  const [installInConvs, setInstallInConvs] = React.useState(undefined)
   const {commands, featured, inTeam, settings} = Container.useSelector((state: Container.TypedState) => {
     const meta = conversationIDKey && state.chat2.metaMap.get(conversationIDKey)
     let inTeam = false
@@ -68,6 +69,7 @@ const InstallBotPopup = (props: Props) => {
         allowCommands: installWithCommands,
         allowMentions: installWithMentions,
         conversationIDKey,
+        convs: installInConvs,
         username: botUsername,
       })
     )
@@ -158,6 +160,8 @@ const InstallBotPopup = (props: Props) => {
       <Kb.Text type="BodySmall">
         This bot will not be able to read any other messages, channels, files, repositories, or team members.
       </Kb.Text>
+      <Kb.Text type="BodyBig">In these channels:</Kb.Text>
+      <Kb.Box2 direction="vertical" fullWidth={true} gap="xtiny"></Kb.Box2>
     </Kb.Box2>
   )
 
@@ -327,6 +331,7 @@ const PermsList = (props: PermsListProps) => {
           {props.settings.mentions && (
             <Kb.Text type="Body">{`• messages it has been mentioned in with @${props.username}`}</Kb.Text>
           )}
+          <Kb.Text type="BodySemibold">In these channels:</Kb.Text>
         </Kb.Box2>
       ) : (
         <Kb.ProgressIndicator />
