@@ -10,6 +10,7 @@ import * as Teams from '../../../constants/teams'
 import * as Types from '../../../constants/types/chat2'
 import * as Constants from '../../../constants/chat2'
 import * as RPCTypes from '../../../constants/types/rpc-gen'
+import ChannelPicker from './channel-picker'
 
 type Props = Container.RouteProps<{botUsername: string; conversationIDKey?: Types.ConversationIDKey}>
 
@@ -19,28 +20,34 @@ const InstallBotPopup = (props: Props) => {
 
   // state
   const [installScreen, setInstallScreen] = React.useState(false)
+  const [channelPickerScreen, setChannelPickerScreen] = React.useState(false)
   const [installWithCommands, setInstallWithCommands] = React.useState(true)
   const [installWithMentions, setInstallWithMentions] = React.useState(true)
-  const [installInConvs, setInstallInConvs] = React.useState(undefined)
-  const {commands, featured, inTeam, settings} = Container.useSelector((state: Container.TypedState) => {
-    const meta = conversationIDKey && state.chat2.metaMap.get(conversationIDKey)
-    let inTeam = false
-    if (meta) {
-      if (meta.teamType === 'adhoc') {
-        inTeam = meta.participants.includes(botUsername)
-      } else {
-        inTeam = Teams.userInTeam(state, meta.teamname, botUsername)
+  const [installInConvs, setInstallInConvs] = React.useState<string[]>([])
+  const {commands, featured, inTeam, settings, teamName} = Container.useSelector(
+    (state: Container.TypedState) => {
+      const meta = conversationIDKey && state.chat2.metaMap.get(conversationIDKey)
+      let inTeam = false
+      let teamName = ''
+      if (meta) {
+        if (meta.teamType === 'adhoc') {
+          inTeam = meta.participants.includes(botUsername)
+        } else {
+          inTeam = Teams.userInTeam(state, meta.teamname, botUsername)
+          teamName = meta.teamname
+        }
+      }
+      return {
+        commands: state.chat2.botPublicCommands.get(botUsername),
+        featured: state.chat2.featuredBotsMap.get(botUsername),
+        inTeam,
+        settings: conversationIDKey
+          ? state.chat2.botSettings.get(conversationIDKey)?.get(botUsername) ?? undefined
+          : undefined,
+        teamName,
       }
     }
-    return {
-      commands: state.chat2.botPublicCommands.get(botUsername),
-      featured: state.chat2.featuredBotsMap.get(botUsername),
-      inTeam,
-      settings: conversationIDKey
-        ? state.chat2.botSettings.get(conversationIDKey)?.get(botUsername) ?? undefined
-        : undefined,
-    }
-  })
+  )
   const error = Container.useAnyErrors(Constants.waitingKeyBotAdd, Constants.waitingKeyBotRemove)
   // dispatch
   const dispatch = Container.useDispatch()
@@ -165,7 +172,24 @@ const InstallBotPopup = (props: Props) => {
     </Kb.Box2>
   )
 
-  const content = installScreen ? installContent : featured ? featuredContent : usernameContent
+  const channelPickerContent = channelPickerScreen && teamName && (
+    <Kb.Box2 direction="vertical" fullWidth={true} style={styles.container} gap="small">
+      <ChannelPicker
+        installInConvs={installInConvs}
+        setChannelPickerScreen={setChannelPickerScreen}
+        setInstallInConvs={setInstallInConvs}
+        teamname={teamName}
+      />
+    </Kb.Box2>
+  )
+
+  const content = channelPickerScreen
+    ? channelPickerContent
+    : installScreen
+    ? installContent
+    : featured
+    ? featuredContent
+    : usernameContent
   const showInstallButton = installScreen && !inTeam
   const showReviewButton = !installScreen && !inTeam
   const showRemoveButton = inTeam && !installScreen
